@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+token=$(snapctl get bot.token)
+channel=$(snapctl get bot.channel)
+
+if [ -z $token ]; then
+    echo "No token found in snap config!"
+    exit 1
+fi
+
+if [ -z $channel ]; then
+    echo "No channel found in snap config!"
+    exit 1
+fi
+
+export BOT_TOKEN=$token
+export BOT_CHANNEL_ID=$channel
+
+exec "$@"

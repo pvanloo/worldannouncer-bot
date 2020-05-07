@@ -120,4 +120,5 @@ async def boss(ctx, *args):
         if not member.bot:
             await member.send(f"Hi {member.mention}, {announcement}")
 
+print("Starting")
 bot.run(token)

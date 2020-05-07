@@ -1,0 +1,35 @@
+name: worldannouncer-bot
+base: core18
+version: '1.0.1'
+summary: Discord bot for announcing world bosses to everyone in a channel.
+description: |
+  Discord bot for announcing world bosses to everyone in a channel.
+
+grade: stable
+confinement: strict
+
+apps:
+  worldannouncer-bot:
+    command: bin/__main__.py
+    daemon: simple
+    command-chain: [bin/snap-wrap]
+    plugs: [network]
+
+parts:
+  src:
+    plugin: dump
+    source: src
+    organize: 
+      '*': bin/
+
+  python:
+    plugin: python
+    source: src
+    python-version: python3
+    requirements: [requirements.txt]
+  
+  snap-util:
+    plugin: dump
+    source: snap-util
+    organize:
+      '*': bin/
